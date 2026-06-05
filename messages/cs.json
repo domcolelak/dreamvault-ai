@@ -1,0 +1,205 @@
+{
+  "common": {
+    "appName": "DreamVault AI",
+    "tagline": "Dekódujte své sny s AI",
+    "loading": "Načítám...",
+    "error": "Chyba",
+    "success": "Úspěch",
+    "cancel": "Zrušit",
+    "save": "Uložit",
+    "delete": "Smazat",
+    "edit": "Upravit",
+    "close": "Zavřít",
+    "back": "Zpět",
+    "next": "Další",
+    "previous": "Předchozí",
+    "submit": "Odeslat",
+    "confirm": "Potvrdit"
+  },
+  "nav": {
+    "home": "Domů",
+    "analyze": "Analyzovat",
+    "journal": "Deník",
+    "upgrade": "Upgrade",
+    "login": "Přihlásit se",
+    "signup": "Registrovat se",
+    "logout": "Odhlásit se",
+    "premium": "Premium"
+  },
+  "landing": {
+    "hero": {
+      "title": "Dekódujte své sny s AI",
+      "subtitle": "Zaznamenejte svůj sen. Odhalte jeho význam. Pochopte své podvědomí.",
+      "cta": "Analyzovat můj sen"
+    },
+    "howItWorks": {
+      "title": "Jak to funguje",
+      "step1": {
+        "title": "Zaznamenejte svůj sen",
+        "description": "Napište svůj sen do detailů. Zahrňte emoce, lidi, místa a symboly, na které si vzpomínáte."
+      },
+      "step2": {
+        "title": "Získejte AI analýzu",
+        "description": "Naše AI analyzuje váš sen pomocí psychologických principů a symbolické interpretace."
+      },
+      "step3": {
+        "title": "Vizualizujte ho",
+        "description": "Uvidíte svůj sen oživený pomocí AI generovaných obrázků, které zachycují jeho podstatu."
+      }
+    },
+    "premium": {
+      "title": "Přejít na Premium",
+      "subtitle": "Odemkněte plnou analýzu snů, HD vizualizace a neomezené ukládání v deníku snů",
+      "price": "€4,99",
+      "perMonth": "/měsíc",
+      "cta": "Získat Premium přístup"
+    },
+    "faq": {
+      "title": "Často kladené otázky",
+      "q1": {
+        "question": "Jak funguje AI analýza snů?",
+        "answer": "Naše AI používá pokročilé psychologické modely k interpretaci symbolů, témat a emocí ve vašich snech, poskytující pohled do vášho podvědomí."
+      },
+      "q2": {
+        "question": "Co je zahrnuto v bezplatné verzi?",
+        "answer": "Bezplatní uživatelé získají 3 analýzy snů denně se základní interpretací a náhledy vizualizací."
+      },
+      "q3": {
+        "question": "Co dostanu s Premium?",
+        "answer": "Premium členové získají plnou psychologickou analýzu, HD vizualizace snů, stažitelné obrázky a 5 analýz denně."
+      },
+      "q4": {
+        "question": "Jsou moje údaje o snech soukromé?",
+        "answer": "Absolutně. Vaše sny jsou šifrované a přístupné pouze vám. Nikdy nesdílíme ani neprodáváme vaše osobní údaje."
+      }
+    },
+    "footer": {
+      "copyright": "© 2024 DreamVault AI. Všechna práva vyhrazena."
+    }
+  },
+  "auth": {
+    "login": {
+      "title": "Vítejte zpět",
+      "subtitle": "Přihlaste se pro přístup ke svému deníku snů",
+      "email": "Email",
+      "password": "Heslo",
+      "submit": "Přihlásit se",
+      "submitting": "Přihlašování...",
+      "googleButton": "Pokračovat s Google",
+      "googleLoading": "Připojuji...",
+      "divider": "Nebo pokračovat s emailem",
+      "noAccount": "Nemáte účet?",
+      "signupLink": "Zaregistrujte se"
+    },
+    "register": {
+      "title": "Vytvořit účet",
+      "subtitle": "Začněte analyzovat své sny s AI",
+      "email": "Email",
+      "password": "Heslo",
+      "submit": "Zaregistrovat se",
+      "submitting": "Vytvářím účet...",
+      "googleButton": "Pokračovat s Google",
+      "googleLoading": "Připojuji...",
+      "divider": "Nebo pokračovat s emailem",
+      "hasAccount": "Již máte účet?",
+      "loginLink": "Přihlaste se",
+      "emailConfirmation": "Zkontrolujte svůj email pro potvrzení účtu před přihlášením."
+    },
+    "errors": {
+      "invalidCredentials": "Neplatný email nebo heslo",
+      "emailInUse": "Email se již používá",
+      "weakPassword": "Heslo musí mít alespoň 6 znaků",
+      "networkError": "Chyba sítě. Zkuste znovu.",
+      "unknown": "Vyskytla se chyba. Zkuste znovu."
+    }
+  },
+  "app": {
+    "title": "Analyzujte svůj sen",
+    "dailyLimit": "Denní limit: {used}/{total} analýz, {usedImages}/{totalImages} obrázků",
+    "dreamInput": {
+      "placeholder": "Napište svůj sen...",
+      "label": "Váš sen"
+    },
+    "submit": "Analyzovat sen",
+    "submitting": "Analyzuji...",
+    "results": {
+      "title": "Analýza snu",
+      "shortTitle": "Rychlá interpretace",
+      "fullTitle": "Plná psychologická analýza",
+      "upgradeButton": "Upgradujte pro více",
+      "imageTitle": "Vizualizace snu",
+      "downloadButton": "Stáhnout",
+      "shareButton": "Sdílet",
+      "shareCopied": "Link zkopírován!"
+    },
+    "errors": {
+      "required": "Text snu je povinný",
+      "tooLong": "Text snu je příliš dlouhý (max 5000 znaků)",
+      "dailyLimit": "Dosáhli jste denního limitu analýz ({limit}/den)",
+      "imageLimit": "Dosáhli jste denního limitu obrázků",
+      "failed": "Nepodařilo se analyzovat sen",
+      "usageLimitCheck": "Nepodařilo se zkontrolovat limity použití"
+    }
+  },
+  "journal": {
+    "title": "Deník snů",
+    "empty": {
+      "title": "Ještě jste nezaznamenali žádné sny.",
+      "cta": "Analyzujte svůj první sen"
+    },
+    "backToJournal": "← Zpět do deníku",
+    "delete": "Smazat",
+    "deleteConfirm": "Jste si jisti, že chcete smazat tento sen?"
+  },
+  "upgrade": {
+    "title": "Přejít na Premium",
+    "subtitle": "Odemkněte plný potenciál analýzy vašich snů",
+    "price": "€4,99",
+    "perMonth": "za měsíc",
+    "cta": "Upgradovat nyní",
+    "processing": "Zpracovávám...",
+    "features": {
+      "feature1": {
+        "title": "Plná psychologická analýza",
+        "description": "Ponořte se hluboko do svého podvědomí s komplexními interpretacemi"
+      },
+      "feature2": {
+        "title": "HD vizualizace snů",
+        "description": "Plné rozlišení 1024x1024 AI generované obrázky"
+      },
+      "feature3": {
+        "title": "Stahování a sdílení",
+        "description": "Uložte si vizualizace a sdílejte je s ostatními"
+      },
+      "feature4": {
+        "title": "5 obrázků denně",
+        "description": "Vygenerujte až 5 vizualizací snů denně"
+      },
+      "feature5": {
+        "title": "Neomezené ukládání v deníku",
+        "description": "Uložte všechny své sny a analýzy navždy"
+      }
+    },
+    "cancelAnytime": "Zrušte kdykoli. Bez otázek.",
+    "backToApp": "← Zpět do aplikace"
+  },
+  "settings": {
+    "title": "Nastavení",
+    "language": {
+      "title": "Jazyk",
+      "description": "Vyberte preferovaný jazyk"
+    }
+  },
+  "languages": {
+    "en": "Angličtina",
+    "sk": "Slovenština",
+    "cs": "Čeština",
+    "de": "Němčina",
+    "hu": "Maďarština",
+    "pl": "Polština",
+    "ro": "Rumunština",
+    "bg": "Bulharština",
+    "ar": "Arabština",
+    "zh": "Čínština"
+  }
+}

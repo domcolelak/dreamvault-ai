@@ -1,0 +1,205 @@
+{
+  "common": {
+    "appName": "DreamVault AI",
+    "tagline": "Dekódold álmaid AI-val",
+    "loading": "Betöltés...",
+    "error": "Hiba",
+    "success": "Siker",
+    "cancel": "Mégse",
+    "save": "Mentés",
+    "delete": "Törlés",
+    "edit": "Szerkesztés",
+    "close": "Bezárás",
+    "back": "Vissza",
+    "next": "Következő",
+    "previous": "Előző",
+    "submit": "Küldés",
+    "confirm": "Megerősítés"
+  },
+  "nav": {
+    "home": "Kezdőlap",
+    "analyze": "Elemzés",
+    "journal": "Napló",
+    "upgrade": "Frissítés",
+    "login": "Bejelentkezés",
+    "signup": "Regisztráció",
+    "logout": "Kijelentkezés",
+    "premium": "Prémium"
+  },
+  "landing": {
+    "hero": {
+      "title": "Dekódold álmaid AI-val",
+      "subtitle": "Rögzítsd álmod. Tárdd fel jelentését. Értsd meg tudatalattid.",
+      "cta": "Álmom elemzése"
+    },
+    "howItWorks": {
+      "title": "Hogyan működik",
+      "step1": {
+        "title": "Rögzítsd álmod",
+        "description": "Írd le álmod részletesen. Foglald bele az érzéseket, embereket, helyeket és szimbólumokat, amikre emlékszel."
+      },
+      "step2": {
+        "title": "Kapj AI elemzést",
+        "description": "AI-nk elemzi álmod pszichológiai elvek és szimbolikus értelmezés alapján."
+      },
+      "step3": {
+        "title": "Vizualizáld",
+        "description": "Lásd életre kelni álmod AI által generált képekkel, amelyek megragadják lényegét."
+      }
+    },
+    "premium": {
+      "title": "Frissítés Prémiumra",
+      "subtitle": "Nyisd ki a teljes álomelemzést, HD vizualizációkat és korlátlan álomnapló tárolást",
+      "price": "€4,99",
+      "perMonth": "/hó",
+      "cta": "Prémium hozzáférés megszerzése"
+    },
+    "faq": {
+      "title": "Gyakran ismételt kérdések",
+      "q1": {
+        "question": "Hogyan működik az AI álomelemzés?",
+        "answer": "AI-nk fejlett pszichológiai modelleket használ szimbólumok, témák és érzelmek értelmezésére álmaidban, betekintést nyújtva tudatalattiodba."
+      },
+      "q2": {
+        "question": "Mit tartalmaz az ingyenes verzió?",
+        "answer": "Az ingyenes felhasználók napi 3 álomelemzést kapnak alapértelmezés szerinti értelmezéssel és előnézeti vizualizációkkal."
+      },
+      "q3": {
+        "question": "Mit kapok a Prémiummal?",
+        "answer": "A Prémium tagok teljes pszichológiai elemzést, HD álomvizualizációkat, letölthető képeket és napi 5 elemzést kapnak."
+      },
+      "q4": {
+        "question": "Biztonságosak az álomadataim?",
+        "answer": "Teljesen. Álmaid titkosítottak és csak te férhetsz hozzájuk. Soha nem osztjuk meg és nem adjuk el személyes adataidat."
+      }
+    },
+    "footer": {
+      "copyright": "© 2024 DreamVault AI. Minden jog fenntartva."
+    }
+  },
+  "auth": {
+    "login": {
+      "title": "Üdvözlünk vissza",
+      "subtitle": "Jelentkezz be az álomnapló eléréséhez",
+      "email": "E-mail",
+      "password": "Jelszó",
+      "submit": "Bejelentkezés",
+      "submitting": "Bejelentkezés...",
+      "googleButton": "Folytatás Google-lal",
+      "googleLoading": "Csatlakozás...",
+      "divider": "Vagy folytatás e-maillel",
+      "noAccount": "Nincs fiókod?",
+      "signupLink": "Regisztráció"
+    },
+    "register": {
+      "title": "Fiók létrehozása",
+      "subtitle": "Kezd el elemezni álmaid AI-val",
+      "email": "E-mail",
+      "password": "Jelszó",
+      "submit": "Regisztráció",
+      "submitting": "Fiók létrehozása...",
+      "googleButton": "Folytatás Google-lal",
+      "googleLoading": "Csatlakozás...",
+      "divider": "Vagy folytatás e-maillel",
+      "hasAccount": "Már van fiókod?",
+      "loginLink": "Bejelentkezés",
+      "emailConfirmation": "Kérjük, ellenőrizd e-mailedet a fiók megerősítéséhez bejelentkezés előtt."
+    },
+    "errors": {
+      "invalidCredentials": "Érvénytelen e-mail vagy jelszó",
+      "emailInUse": "Az e-mail már használatban van",
+      "weakPassword": "A jelszónak legalább 6 karakternek kell lennie",
+      "networkError": "Hálózati hiba. Kérjük, próbáld újra.",
+      "unknown": "Hiba történt. Kérjük, próbáld újra."
+    }
+  },
+  "app": {
+    "title": "Elemezd álmod",
+    "dailyLimit": "Napi limit: {used}/{total} elemzés, {usedImages}/{totalImages} kép",
+    "dreamInput": {
+      "placeholder": "Írd le álmod...",
+      "label": "Álmod"
+    },
+    "submit": "Álom elemzése",
+    "submitting": "Elemzés...",
+    "results": {
+      "title": "Álomelemzés",
+      "shortTitle": "Gyors értelmezés",
+      "fullTitle": "Teljes pszichológiai elemzés",
+      "upgradeButton": "Frissítés a továbbiakhoz",
+      "imageTitle": "Álomvizualizáció",
+      "downloadButton": "Letöltés",
+      "shareButton": "Megosztás",
+      "shareCopied": "Link másolva!"
+    },
+    "errors": {
+      "required": "Álomszöveg kötelező",
+      "tooLong": "Álomszöveg túl hosszú (max 5000 karakter)",
+      "dailyLimit": "Napi elemzési limit elérve ({limit}/nap)",
+      "imageLimit": "Napi képlimit elérve",
+      "failed": "Álomelemzés sikertelen",
+      "usageLimitCheck": "Használati limitek ellenőrzése sikertelen"
+    }
+  },
+  "journal": {
+    "title": "Álomnapló",
+    "empty": {
+      "title": "Még nem rögzítettél álmokat.",
+      "cta": "Elemezd első álmod"
+    },
+    "backToJournal": "← Vissza a naplóhoz",
+    "delete": "Törlés",
+    "deleteConfirm": "Biztos törlöd ezt az álmot?"
+  },
+  "upgrade": {
+    "title": "Frissítés Prémiumra",
+    "subtitle": "Szabadítsd fel álomelemzésed teljes potenciálját",
+    "price": "€4,99",
+    "perMonth": "havonta",
+    "cta": "Frissítés most",
+    "processing": "Feldolgozás...",
+    "features": {
+      "feature1": {
+        "title": "Teljes pszichológiai elemzés",
+        "description": "Merülj el mélyen tudatalattiodban átfogó értelmezésekkel"
+      },
+      "feature2": {
+        "title": "HD álomvizualizációk",
+        "description": "Teljes 1024x1024 felbontású AI generált képek"
+      },
+      "feature3": {
+        "title": "Letöltés és megosztás",
+        "description": "Mentsd el vizualizációidat és oszd meg másokkal"
+      },
+      "feature4": {
+        "title": "5 kép naponta",
+        "description": "Generálj akár 5 álomvizualizációt naponta"
+      },
+      "feature5": {
+        "title": "Korlátlan naplótárolás",
+        "description": "Mentsd el összes álmod és elemzésed örökre"
+      }
+    },
+    "cancelAnytime": "Bármikor lemondható. Kérdések nélkül.",
+    "backToApp": "← Vissza az alkalmazáshoz"
+  },
+  "settings": {
+    "title": "Beállítások",
+    "language": {
+      "title": "Nyelv",
+      "description": "Válaszd ki preferált nyelved"
+    }
+  },
+  "languages": {
+    "en": "Angol",
+    "sk": "Szlovák",
+    "cs": "Cseh",
+    "de": "Német",
+    "hu": "Magyar",
+    "pl": "Lengyel",
+    "ro": "Román",
+    "bg": "Bolgár",
+    "ar": "Arab",
+    "zh": "Kínai"
+  }
+}

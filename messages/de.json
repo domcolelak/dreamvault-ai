@@ -1,0 +1,205 @@
+{
+  "common": {
+    "appName": "DreamVault AI",
+    "tagline": "Entschlüsseln Sie Ihre Träume mit KI",
+    "loading": "Lädt...",
+    "error": "Fehler",
+    "success": "Erfolg",
+    "cancel": "Abbrechen",
+    "save": "Speichern",
+    "delete": "Löschen",
+    "edit": "Bearbeiten",
+    "close": "Schließen",
+    "back": "Zurück",
+    "next": "Weiter",
+    "previous": "Vorherige",
+    "submit": "Senden",
+    "confirm": "Bestätigen"
+  },
+  "nav": {
+    "home": "Startseite",
+    "analyze": "Analysieren",
+    "journal": "Tagebuch",
+    "upgrade": "Upgrade",
+    "login": "Anmelden",
+    "signup": "Registrieren",
+    "logout": "Abmelden",
+    "premium": "Premium"
+  },
+  "landing": {
+    "hero": {
+      "title": "Entschlüsseln Sie Ihre Träume mit KI",
+      "subtitle": "Zeichnen Sie Ihren Traum auf. Enthüllen Sie seine Bedeutung. Verstehen Sie Ihr Unterbewusstsein.",
+      "cta": "Meinen Traum analysieren"
+    },
+    "howItWorks": {
+      "title": "Wie es funktioniert",
+      "step1": {
+        "title": "Zeichnen Sie Ihren Traum auf",
+        "description": "Schreiben Sie Ihren Traum detailliert auf. Fügen Sie Emotionen, Menschen, Orte und Symbole hinzu, an die Sie sich erinnern."
+      },
+      "step2": {
+        "title": "Erhalten Sie KI-Analyse",
+        "description": "Unsere KI analysiert Ihren Traum mithilfe psychologischer Prinzipien und symbolischer Interpretation."
+      },
+      "step3": {
+        "title": "Visualisieren Sie ihn",
+        "description": "Sehen Sie Ihren Traum zum Leben erweckt mit KI-generierten Bildern, die seine Essenz erfassen."
+      }
+    },
+    "premium": {
+      "title": "Upgrade auf Premium",
+      "subtitle": "Schalten Sie vollständige Traumanalyse, HD-Visualisierungen und unbegrenzte Traumtagebuchspeicherung frei",
+      "price": "€4,99",
+      "perMonth": "/Monat",
+      "cta": "Premium-Zugang erhalten"
+    },
+    "faq": {
+      "title": "Häufig gestellte Fragen",
+      "q1": {
+        "question": "Wie funktioniert die KI-Traumanalyse?",
+        "answer": "Unsere KI verwendet fortschrittliche psychologische Modelle zur Interpretation von Symbolen, Themen und Emotionen in Ihren Träumen und bietet Einblicke in Ihr Unterbewusstsein."
+      },
+      "q2": {
+        "question": "Was ist in der kostenlosen Version enthalten?",
+        "answer": "Kostenlose Benutzer erhalten 3 Traumanalysen pro Tag mit grundlegender Interpretation und Vorschau-Visualisierungen."
+      },
+      "q3": {
+        "question": "Was bekomme ich mit Premium?",
+        "answer": "Premium-Mitglieder erhalten vollständige psychologische Analyse, HD-Traumvisualisierungen, herunterladbare Bilder und 5 Analysen pro Tag."
+      },
+      "q4": {
+        "question": "Sind meine Traumdaten privat?",
+        "answer": "Absolut. Ihre Träume sind verschlüsselt und nur für Sie zugänglich. Wir teilen oder verkaufen Ihre persönlichen Daten niemals."
+      }
+    },
+    "footer": {
+      "copyright": "© 2024 DreamVault AI. Alle Rechte vorbehalten."
+    }
+  },
+  "auth": {
+    "login": {
+      "title": "Willkommen zurück",
+      "subtitle": "Melden Sie sich an, um auf Ihr Traumtagebuch zuzugreifen",
+      "email": "E-Mail",
+      "password": "Passwort",
+      "submit": "Anmelden",
+      "submitting": "Anmeldung läuft...",
+      "googleButton": "Mit Google fortfahren",
+      "googleLoading": "Verbinde...",
+      "divider": "Oder mit E-Mail fortfahren",
+      "noAccount": "Haben Sie kein Konto?",
+      "signupLink": "Registrieren"
+    },
+    "register": {
+      "title": "Konto erstellen",
+      "subtitle": "Beginnen Sie mit der Analyse Ihrer Träume mit KI",
+      "email": "E-Mail",
+      "password": "Passwort",
+      "submit": "Registrieren",
+      "submitting": "Konto wird erstellt...",
+      "googleButton": "Mit Google fortfahren",
+      "googleLoading": "Verbinde...",
+      "divider": "Oder mit E-Mail fortfahren",
+      "hasAccount": "Haben Sie bereits ein Konto?",
+      "loginLink": "Anmelden",
+      "emailConfirmation": "Bitte überprüfen Sie Ihre E-Mail, um Ihr Konto vor der Anmeldung zu bestätigen."
+    },
+    "errors": {
+      "invalidCredentials": "Ungültige E-Mail oder Passwort",
+      "emailInUse": "E-Mail wird bereits verwendet",
+      "weakPassword": "Passwort muss mindestens 6 Zeichen lang sein",
+      "networkError": "Netzwerkfehler. Bitte versuchen Sie es erneut.",
+      "unknown": "Ein Fehler ist aufgetreten. Bitte versuchen Sie es erneut."
+    }
+  },
+  "app": {
+    "title": "Analysieren Sie Ihren Traum",
+    "dailyLimit": "Tageslimit: {used}/{total} Analysen, {usedImages}/{totalImages} Bilder",
+    "dreamInput": {
+      "placeholder": "Schreiben Sie Ihren Traum...",
+      "label": "Ihr Traum"
+    },
+    "submit": "Traum analysieren",
+    "submitting": "Analysiere...",
+    "results": {
+      "title": "Traumanalyse",
+      "shortTitle": "Schnelle Interpretation",
+      "fullTitle": "Vollständige psychologische Analyse",
+      "upgradeButton": "Upgrade zum Weiterlesen",
+      "imageTitle": "Traumvisualisierung",
+      "downloadButton": "Herunterladen",
+      "shareButton": "Teilen",
+      "shareCopied": "Link kopiert!"
+    },
+    "errors": {
+      "required": "Traumtext ist erforderlich",
+      "tooLong": "Traumtext zu lang (max 5000 Zeichen)",
+      "dailyLimit": "Tageslimit für Analysen erreicht ({limit}/Tag)",
+      "imageLimit": "Tageslimit für Bilder erreicht",
+      "failed": "Traumanalyse fehlgeschlagen",
+      "usageLimitCheck": "Nutzungslimits konnten nicht überprüft werden"
+    }
+  },
+  "journal": {
+    "title": "Traumtagebuch",
+    "empty": {
+      "title": "Sie haben noch keine Träume aufgezeichnet.",
+      "cta": "Analysieren Sie Ihren ersten Traum"
+    },
+    "backToJournal": "← Zurück zum Tagebuch",
+    "delete": "Löschen",
+    "deleteConfirm": "Sind Sie sicher, dass Sie diesen Traum löschen möchten?"
+  },
+  "upgrade": {
+    "title": "Upgrade auf Premium",
+    "subtitle": "Entfalten Sie das volle Potenzial Ihrer Traumanalyse",
+    "price": "€4,99",
+    "perMonth": "pro Monat",
+    "cta": "Jetzt upgraden",
+    "processing": "Verarbeitung...",
+    "features": {
+      "feature1": {
+        "title": "Vollständige psychologische Analyse",
+        "description": "Tauchen Sie tief in Ihr Unterbewusstsein ein mit umfassenden Interpretationen"
+      },
+      "feature2": {
+        "title": "HD-Traumvisualisierungen",
+        "description": "Volle 1024x1024 Auflösung KI-generierte Bilder"
+      },
+      "feature3": {
+        "title": "Herunterladen & Teilen",
+        "description": "Speichern Sie Ihre Visualisierungen und teilen Sie sie mit anderen"
+      },
+      "feature4": {
+        "title": "5 Bilder pro Tag",
+        "description": "Generieren Sie bis zu 5 Traumvisualisierungen täglich"
+      },
+      "feature5": {
+        "title": "Unbegrenzter Tagebuchspeicher",
+        "description": "Speichern Sie alle Ihre Träume und Analysen für immer"
+      }
+    },
+    "cancelAnytime": "Jederzeit kündbar. Keine Fragen gestellt.",
+    "backToApp": "← Zurück zur App"
+  },
+  "settings": {
+    "title": "Einstellungen",
+    "language": {
+      "title": "Sprache",
+      "description": "Wählen Sie Ihre bevorzugte Sprache"
+    }
+  },
+  "languages": {
+    "en": "Englisch",
+    "sk": "Slowakisch",
+    "cs": "Tschechisch",
+    "de": "Deutsch",
+    "hu": "Ungarisch",
+    "pl": "Polnisch",
+    "ro": "Rumänisch",
+    "bg": "Bulgarisch",
+    "ar": "Arabisch",
+    "zh": "Chinesisch"
+  }
+}

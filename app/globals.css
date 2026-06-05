@@ -1,0 +1,72 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Base styling */
+body {
+  @apply bg-slate-950 text-white min-h-screen;
+}
+
+/* Optional smooth rendering */
+html {
+  @apply scroll-smooth;
+}
+
+@layer components {
+
+  .gradient-button {
+    @apply bg-gradient-to-r 
+           from-indigo-500 
+           to-blue-500 
+           hover:from-blue-500 
+           hover:to-indigo-500 
+           transition-all 
+           duration-300 
+           px-8 
+           py-4 
+           rounded-lg 
+           font-semibold 
+           text-white 
+           shadow-lg 
+           hover:shadow-xl;
+  }
+
+  .card {
+    @apply bg-white/5 
+           backdrop-blur-sm 
+           border 
+           border-white/10 
+           rounded-xl 
+           p-6;
+  }
+
+  .input-field {
+    @apply bg-white/5 
+           border 
+           border-white/20 
+           rounded-lg 
+           px-4 
+           py-3 
+           text-white 
+           placeholder-white/40 
+           focus:outline-none 
+           focus:border-indigo-400 
+           transition-colors 
+           w-full;
+  }
+
+  .blur-premium {
+    @apply relative overflow-hidden;
+  }
+
+  .blur-premium::after {
+    content: '';
+    @apply absolute 
+           inset-0 
+           backdrop-blur-md 
+           bg-gradient-to-b 
+           from-transparent 
+           to-black/60;
+  }
+
+}

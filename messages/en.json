@@ -1,0 +1,205 @@
+{
+  "common": {
+    "appName": "DreamVault AI",
+    "tagline": "Decode Your Dreams with AI",
+    "loading": "Loading...",
+    "error": "Error",
+    "success": "Success",
+    "cancel": "Cancel",
+    "save": "Save",
+    "delete": "Delete",
+    "edit": "Edit",
+    "close": "Close",
+    "back": "Back",
+    "next": "Next",
+    "previous": "Previous",
+    "submit": "Submit",
+    "confirm": "Confirm"
+  },
+  "nav": {
+    "home": "Home",
+    "analyze": "Analyze",
+    "journal": "Journal",
+    "upgrade": "Upgrade",
+    "login": "Log In",
+    "signup": "Sign Up",
+    "logout": "Logout",
+    "premium": "Premium"
+  },
+  "landing": {
+    "hero": {
+      "title": "Decode Your Dreams with AI",
+      "subtitle": "Record your dream. Reveal its meaning. Understand your subconscious.",
+      "cta": "Analyze My Dream"
+    },
+    "howItWorks": {
+      "title": "How It Works",
+      "step1": {
+        "title": "Record Your Dream",
+        "description": "Write down your dream in detail. Include emotions, people, places, and symbols you remember."
+      },
+      "step2": {
+        "title": "Get AI Analysis",
+        "description": "Our AI analyzes your dream using psychological principles and symbolic interpretation."
+      },
+      "step3": {
+        "title": "Visualize It",
+        "description": "See your dream brought to life with AI-generated imagery that captures its essence."
+      }
+    },
+    "premium": {
+      "title": "Upgrade to Premium",
+      "subtitle": "Unlock full dream analysis, HD visualizations, and unlimited dream journal storage",
+      "price": "€4.99",
+      "perMonth": "/month",
+      "cta": "Get Premium Access"
+    },
+    "faq": {
+      "title": "Frequently Asked Questions",
+      "q1": {
+        "question": "How does AI dream analysis work?",
+        "answer": "Our AI uses advanced psychological models to interpret symbols, themes, and emotions in your dreams, providing insights into your subconscious mind."
+      },
+      "q2": {
+        "question": "What's included in the free version?",
+        "answer": "Free users get 3 dream analyses per day with basic interpretation and preview visualizations."
+      },
+      "q3": {
+        "question": "What do I get with Premium?",
+        "answer": "Premium members receive full psychological analysis, HD dream visualizations, downloadable images, and 5 analyses per day."
+      },
+      "q4": {
+        "question": "Is my dream data private?",
+        "answer": "Absolutely. Your dreams are encrypted and only accessible by you. We never share or sell your personal data."
+      }
+    },
+    "footer": {
+      "copyright": "© 2024 DreamVault AI. All rights reserved."
+    }
+  },
+  "auth": {
+    "login": {
+      "title": "Welcome Back",
+      "subtitle": "Log in to access your dream journal",
+      "email": "Email",
+      "password": "Password",
+      "submit": "Log In",
+      "submitting": "Logging in...",
+      "googleButton": "Continue with Google",
+      "googleLoading": "Connecting...",
+      "divider": "Or continue with email",
+      "noAccount": "Don't have an account?",
+      "signupLink": "Sign up"
+    },
+    "register": {
+      "title": "Create Account",
+      "subtitle": "Start analyzing your dreams with AI",
+      "email": "Email",
+      "password": "Password",
+      "submit": "Sign Up",
+      "submitting": "Creating account...",
+      "googleButton": "Continue with Google",
+      "googleLoading": "Connecting...",
+      "divider": "Or continue with email",
+      "hasAccount": "Already have an account?",
+      "loginLink": "Log in",
+      "emailConfirmation": "Please check your email to confirm your account before logging in."
+    },
+    "errors": {
+      "invalidCredentials": "Invalid email or password",
+      "emailInUse": "Email already in use",
+      "weakPassword": "Password must be at least 6 characters",
+      "networkError": "Network error. Please try again.",
+      "unknown": "An error occurred. Please try again."
+    }
+  },
+  "app": {
+    "title": "Analyze Your Dream",
+    "dailyLimit": "Daily Limit: {used}/{total} analyses, {usedImages}/{totalImages} images",
+    "dreamInput": {
+      "placeholder": "Write your dream...",
+      "label": "Your Dream"
+    },
+    "submit": "Analyze Dream",
+    "submitting": "Analyzing...",
+    "results": {
+      "title": "Dream Analysis",
+      "shortTitle": "Quick Interpretation",
+      "fullTitle": "Full Psychological Analysis",
+      "upgradeButton": "Upgrade to Read More",
+      "imageTitle": "Dream Visualization",
+      "downloadButton": "Download",
+      "shareButton": "Share",
+      "shareCopied": "Link copied!"
+    },
+    "errors": {
+      "required": "Dream text is required",
+      "tooLong": "Dream text too long (max 5000 characters)",
+      "dailyLimit": "Daily analysis limit reached ({limit}/day)",
+      "imageLimit": "Daily image limit reached",
+      "failed": "Failed to analyze dream",
+      "usageLimitCheck": "Failed to check usage limits"
+    }
+  },
+  "journal": {
+    "title": "Dream Journal",
+    "empty": {
+      "title": "You haven't recorded any dreams yet.",
+      "cta": "Analyze Your First Dream"
+    },
+    "backToJournal": "← Back to Journal",
+    "delete": "Delete",
+    "deleteConfirm": "Are you sure you want to delete this dream?"
+  },
+  "upgrade": {
+    "title": "Upgrade to Premium",
+    "subtitle": "Unlock the full potential of your dream analysis",
+    "price": "€4.99",
+    "perMonth": "per month",
+    "cta": "Upgrade Now",
+    "processing": "Processing...",
+    "features": {
+      "feature1": {
+        "title": "Full Psychological Analysis",
+        "description": "Deep dive into your subconscious with comprehensive interpretations"
+      },
+      "feature2": {
+        "title": "HD Dream Visualizations",
+        "description": "Full 1024x1024 resolution AI-generated images"
+      },
+      "feature3": {
+        "title": "Download & Share",
+        "description": "Save your visualizations and share with others"
+      },
+      "feature4": {
+        "title": "5 Images Per Day",
+        "description": "Generate up to 5 dream visualizations daily"
+      },
+      "feature5": {
+        "title": "Unlimited Journal Storage",
+        "description": "Save all your dreams and analyses forever"
+      }
+    },
+    "cancelAnytime": "Cancel anytime. No questions asked.",
+    "backToApp": "← Back to App"
+  },
+  "settings": {
+    "title": "Settings",
+    "language": {
+      "title": "Language",
+      "description": "Select your preferred language"
+    }
+  },
+  "languages": {
+    "en": "English",
+    "sk": "Slovenčina",
+    "cs": "Čeština",
+    "de": "Deutsch",
+    "hu": "Magyar",
+    "pl": "Polski",
+    "ro": "Română",
+    "bg": "Български",
+    "ar": "العربية",
+    "zh": "中文"
+  }
+}
