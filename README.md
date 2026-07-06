@@ -1,6 +1,10 @@
 # DreamVault AI
 
-A production-ready dream journal and AI interpretation platform built with Next.js 14, Supabase, Stripe, and OpenAI.
+AI dream journal — record dreams, get psychological analysis & AI-generated visualizations.
+
+![DreamVault AI preview](docs/screenshots/preview.png)
+
+**Live:** https://dreamvaultai.online
 
 ## Features
 
