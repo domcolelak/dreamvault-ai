@@ -1,0 +1,578 @@
+// Sales Agent — database schema
+// Nothing in this schema encodes a specific industry, country, language or
+// service. Everything campaign-specific lives in Campaign/SearchStrategy rows.
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// ---------------------------------------------------------------------------
+// Enums
+// ---------------------------------------------------------------------------
+
+enum CampaignStatus {
+  DRAFT
+  ACTIVE
+  PAUSED
+  COMPLETED
+}
+
+enum SendingMode {
+  DRAFT_ONLY
+  AUTOMATIC
+}
+
+enum LeadStatus {
+  DISCOVERED
+  RESEARCHING
+  QUALIFIED
+  REJECTED
+  CONTACT_FOUND
+  READY
+  DRAFTED
+  SENT
+  REPLIED
+  MANUAL
+  FAILED
+  DO_NOT_CONTACT
+}
+
+enum EmailStatus {
+  VERIFIED
+  VALID
+  UNKNOWN
+  GUESSED
+  INVALID
+}
+
+enum ContactStatus {
+  NEW
+  CONTACTED
+  REPLIED
+  BOUNCED
+  DO_NOT_CONTACT
+}
+
+enum SuppressionReason {
+  OPT_OUT
+  REPLIED
+  MANUAL_BLOCK
+  BOUNCE
+  COMPLAINT
+  OTHER
+}
+
+enum SuppressionScope {
+  EMAIL
+  DOMAIN
+}
+
+enum JobType {
+  CAMPAIGN_DISCOVERY
+  COMPANY_RESEARCH
+  LEAD_QUALIFICATION
+  CONTACT_DISCOVERY
+  EMAIL_GENERATION
+  EMAIL_SEND
+  IMAP_SYNC
+}
+
+enum JobStatus {
+  PENDING
+  RUNNING
+  SUCCEEDED
+  FAILED
+  CANCELLED
+}
+
+enum DraftStatus {
+  DRAFT
+  APPROVED
+  SENT
+  DISCARDED
+  BLOCKED
+}
+
+enum AgentLogType {
+  CAMPAIGN_INTERPRETATION
+  SEARCH_STRATEGY
+  DISCOVERY
+  RESEARCH
+  QUALIFICATION
+  CONTACT_SELECTION
+  EMAIL_GENERATION
+  SEND_DECISION
+  SEND_RESULT
+  IMAP_SYNC
+  PROVIDER_ERROR
+  SYSTEM
+}
+
+// ---------------------------------------------------------------------------
+// Core models
+// ---------------------------------------------------------------------------
+
+model User {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  name      String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  campaigns   Campaign[]
+  settings    AppSettings?
+  suppression SuppressionEntry[]
+}
+
+/// Single-row-per-user application settings. Values here override ENV defaults
+/// for everything that is safe to change at runtime (never credentials).
+model AppSettings {
+  id     String @id @default(cuid())
+  userId String @unique
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  llmProvider String?
+  llmModel    String?
+  llmBaseUrl  String?
+
+  senderName  String?
+  senderEmail String?
+
+  globalDailyEmailLimit Int     @default(100)
+  workingHoursStart     Int     @default(9)
+  workingHoursEnd       Int     @default(17)
+  timezone              String  @default("Europe/Bratislava")
+  sendMinGapMinutes     Int     @default(4)
+  sendMaxGapMinutes     Int     @default(14)
+  /// Minimum contact trust required before an automatic send is allowed.
+  autoSendEmailStatuses EmailStatus[] @default([VERIFIED, VALID])
+
+  searchProvider       String?
+  verificationProvider String?
+  enrichmentProvider   String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Campaign {
+  id     String @id @default(cuid())
+  userId String
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  name     String
+  /// Verbatim free-text brief the user typed. Authoritative input.
+  rawBrief String
+
+  // --- AI interpretation (user editable) ---
+  productOrService         String?
+  targetCompanyDescription String?
+  targetRegions            String[] @default([])
+  industries               String[] @default([])
+  companySizeMin           Int?
+  companySizeMax           Int?
+  companySizeNote          String?
+  decisionMakerRoles       String[] @default([])
+  buyingSignals            String[] @default([])
+  exclusions               String[] @default([])
+  preferredLanguages       String[] @default([])
+  interpretationNotes      String?
+  /// True once a human has reviewed/edited the AI interpretation.
+  interpretationApproved   Boolean  @default(false)
+
+  leadsTarget     Int            @default(30)
+  dailySendLimit  Int            @default(20)
+  minimumScore    Int            @default(75)
+  sendingMode     SendingMode    @default(DRAFT_ONLY)
+  status          CampaignStatus @default(DRAFT)
+  isDemo          Boolean        @default(false)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  searchStrategies SearchStrategy[]
+  leads            Lead[]
+  drafts           EmailDraft[]
+  sentEmails       SentEmail[]
+  inboundEmails    InboundEmail[]
+  runs             AgentRun[]
+  logs             AgentLog[]
+  jobs             Job[]
+
+  @@index([userId])
+  @@index([status])
+  @@index([createdAt])
+}
+
+model SearchStrategy {
+  id         String   @id @default(cuid())
+  campaignId String
+  campaign   Campaign @relation(fields: [campaignId], references: [id], onDelete: Cascade)
+
+  version           Int      @default(1)
+  queries           String[] @default([])
+  companySources    String[] @default([])
+  signalsToLookFor  String[] @default([])
+  decisionMakerRoles String[] @default([])
+  pagesToInspect    String[] @default([])
+  rationale         String?
+  isActive          Boolean  @default(true)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([campaignId, version])
+  @@index([campaignId, isActive])
+}
+
+model Company {
+  id     String  @id @default(cuid())
+  /// Registrable domain, lowercased, no scheme/www. Global dedup key.
+  domain String  @unique
+  name   String
+
+  country          String?
+  industry         String?
+  description      String?
+  employeeEstimate Int?
+  employeeNote     String?
+  websiteLanguage  String?
+  websiteUrl       String?
+  /// Raw page text kept per research run lives in LeadEvidence; this is a
+  /// condensed, human-readable research summary.
+  researchSummary  String?
+  lastResearchedAt DateTime?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  leads    Lead[]
+  contacts Contact[]
+
+  @@index([country])
+  @@index([createdAt])
+}
+
+model Lead {
+  id         String   @id @default(cuid())
+  campaignId String
+  campaign   Campaign @relation(fields: [campaignId], references: [id], onDelete: Cascade)
+  companyId  String
+  company    Company  @relation(fields: [companyId], references: [id], onDelete: Cascade)
+  contactId  String?
+  contact    Contact? @relation(fields: [contactId], references: [id], onDelete: SetNull)
+
+  status LeadStatus @default(DISCOVERED)
+
+  score             Int?
+  qualified         Boolean?
+  qualificationReason String?
+  strongestSignal   String?
+  recommendedAngle  String?
+  rejectionReason   String?
+
+  discoverySourceUrl String?
+  discoveryQuery     String?
+
+  automationStopped Boolean   @default(false)
+  firstSentAt       DateTime?
+  repliedAt         DateTime?
+  failureReason     String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  evidence      LeadEvidence[]
+  statusHistory LeadStatusHistory[]
+  drafts        EmailDraft[]
+  sentEmails    SentEmail[]
+  inboundEmails InboundEmail[]
+  logs          AgentLog[]
+  jobs          Job[]
+
+  /// One lead per company per campaign — campaign-level dedup.
+  @@unique([campaignId, companyId])
+  @@index([campaignId, status])
+  @@index([status])
+  @@index([score])
+  @@index([createdAt])
+  @@index([repliedAt])
+}
+
+model LeadStatusHistory {
+  id     String     @id @default(cuid())
+  leadId String
+  lead   Lead       @relation(fields: [leadId], references: [id], onDelete: Cascade)
+  from   LeadStatus?
+  to     LeadStatus
+  reason String?
+
+  createdAt DateTime @default(now())
+
+  @@index([leadId, createdAt])
+}
+
+/// Every material claim the agent makes must be backed by a row here.
+model LeadEvidence {
+  id     String @id @default(cuid())
+  leadId String
+  lead   Lead   @relation(fields: [leadId], references: [id], onDelete: Cascade)
+
+  claim     String
+  sourceUrl String?
+  kind      String?
+  confidence Int?
+  excerpt   String?
+
+  createdAt DateTime @default(now())
+
+  @@index([leadId])
+}
+
+model Contact {
+  id        String  @id @default(cuid())
+  companyId String
+  company   Company @relation(fields: [companyId], references: [id], onDelete: Cascade)
+
+  firstName String?
+  lastName  String?
+  fullName  String?
+  jobTitle  String?
+  /// Null when no contact could be found without fabricating one.
+  email       String?
+  emailStatus EmailStatus @default(UNKNOWN)
+  emailPattern String?
+  linkedinUrl String?
+  sourceUrl   String?
+  /// 0-100 confidence that this person/address is the right one.
+  confidence  Int?
+  status      ContactStatus @default(NEW)
+  isGeneric   Boolean       @default(false)
+
+  /// Set the moment any reply from this contact is detected. Hard global stop.
+  globalDoNotAutoContact Boolean @default(false)
+  lastContactedAt        DateTime?
+  repliedAt              DateTime?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  leads         Lead[]
+  drafts        EmailDraft[]
+  sentEmails    SentEmail[]
+  inboundEmails InboundEmail[]
+
+  @@unique([email])
+  @@index([companyId])
+  @@index([emailStatus])
+  @@index([status])
+}
+
+model EmailDraft {
+  id         String   @id @default(cuid())
+  campaignId String
+  campaign   Campaign @relation(fields: [campaignId], references: [id], onDelete: Cascade)
+  leadId     String
+  lead       Lead     @relation(fields: [leadId], references: [id], onDelete: Cascade)
+  contactId  String?
+  contact    Contact? @relation(fields: [contactId], references: [id], onDelete: SetNull)
+
+  language String
+  subject  String
+  body     String
+  personalizationEvidence String
+  sourceUrl String?
+  wordCount Int?
+
+  status      DraftStatus @default(DRAFT)
+  blockReason String?
+  model       String?
+
+  /// When the scheduler intends to send this draft (AUTOMATIC mode).
+  scheduledAt DateTime?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  sentEmail SentEmail?
+
+  @@index([campaignId, status])
+  @@index([leadId])
+  @@index([scheduledAt])
+  @@index([createdAt])
+}
+
+model SentEmail {
+  id         String   @id @default(cuid())
+  campaignId String
+  campaign   Campaign @relation(fields: [campaignId], references: [id], onDelete: Cascade)
+  leadId     String
+  lead       Lead     @relation(fields: [leadId], references: [id], onDelete: Cascade)
+  contactId  String?
+  contact    Contact? @relation(fields: [contactId], references: [id], onDelete: SetNull)
+  draftId    String?  @unique
+  draft      EmailDraft? @relation(fields: [draftId], references: [id], onDelete: SetNull)
+
+  /// RFC Message-ID as accepted by the SMTP server, used for reply matching.
+  messageId String  @unique
+  recipient String
+  fromEmail String
+  subject   String
+  /// Exact body as handed to SMTP.
+  body      String
+  language  String?
+  sentAt    DateTime @default(now())
+
+  inboundEmails InboundEmail[]
+
+  @@index([campaignId, sentAt])
+  @@index([recipient])
+  @@index([sentAt])
+  @@index([leadId])
+}
+
+model InboundEmail {
+  id String @id @default(cuid())
+
+  campaignId String?
+  campaign   Campaign? @relation(fields: [campaignId], references: [id], onDelete: SetNull)
+  leadId     String?
+  lead       Lead?     @relation(fields: [leadId], references: [id], onDelete: SetNull)
+  contactId  String?
+  contact    Contact?  @relation(fields: [contactId], references: [id], onDelete: SetNull)
+  sentEmailId String?
+  sentEmail   SentEmail? @relation(fields: [sentEmailId], references: [id], onDelete: SetNull)
+
+  messageId  String  @unique
+  inReplyTo  String?
+  references String?
+  fromEmail  String
+  fromName   String?
+  toEmail    String?
+  subject    String?
+  bodyText   String?
+  bodySnippet String?
+  receivedAt DateTime
+  uid        Int?
+  mailbox    String?
+
+  matchedBy String?
+  isReply   Boolean @default(false)
+  needsManualHandling Boolean @default(true)
+  handledAt DateTime?
+
+  createdAt DateTime @default(now())
+
+  @@index([fromEmail])
+  @@index([receivedAt])
+  @@index([campaignId])
+  @@index([isReply, handledAt])
+}
+
+model SuppressionEntry {
+  id     String  @id @default(cuid())
+  userId String?
+  user   User?   @relation(fields: [userId], references: [id], onDelete: SetNull)
+
+  scope SuppressionScope
+  /// Lowercased email address or bare domain, depending on scope.
+  value String
+  reason SuppressionReason
+  note   String?
+
+  createdAt DateTime @default(now())
+
+  @@unique([scope, value])
+  @@index([value])
+}
+
+/// One execution of an agent phase over a campaign. Groups jobs and logs.
+model AgentRun {
+  id         String   @id @default(cuid())
+  campaignId String
+  campaign   Campaign @relation(fields: [campaignId], references: [id], onDelete: Cascade)
+
+  trigger   String
+  status    JobStatus @default(PENDING)
+  startedAt DateTime?
+  finishedAt DateTime?
+  error     String?
+
+  companiesFound  Int @default(0)
+  leadsCreated    Int @default(0)
+  leadsQualified  Int @default(0)
+  leadsRejected   Int @default(0)
+  contactsFound   Int @default(0)
+  draftsCreated   Int @default(0)
+  emailsSent      Int @default(0)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  jobs Job[]
+  logs AgentLog[]
+
+  @@index([campaignId, createdAt])
+  @@index([status])
+}
+
+model Job {
+  id         String  @id @default(cuid())
+  type       JobType
+  status     JobStatus @default(PENDING)
+  campaignId String?
+  campaign   Campaign? @relation(fields: [campaignId], references: [id], onDelete: Cascade)
+  leadId     String?
+  lead       Lead?     @relation(fields: [leadId], references: [id], onDelete: Cascade)
+  runId      String?
+  run        AgentRun? @relation(fields: [runId], references: [id], onDelete: SetNull)
+
+  /// Stable key making enqueue idempotent (e.g. "EMAIL_GENERATION:<leadId>").
+  idempotencyKey String? @unique
+  payload        Json?
+  attempts       Int     @default(0)
+  maxAttempts    Int     @default(3)
+  runAfter       DateTime @default(now())
+  lockedAt       DateTime?
+  startedAt      DateTime?
+  finishedAt     DateTime?
+  lastError      String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([status, runAfter])
+  @@index([campaignId, type])
+  @@index([type, status])
+}
+
+/// Audit trail of every meaningful AI decision.
+model AgentLog {
+  id         String       @id @default(cuid())
+  type       AgentLogType
+  campaignId String?
+  campaign   Campaign?    @relation(fields: [campaignId], references: [id], onDelete: Cascade)
+  leadId     String?
+  lead       Lead?        @relation(fields: [leadId], references: [id], onDelete: Cascade)
+  runId      String?
+  run        AgentRun?    @relation(fields: [runId], references: [id], onDelete: SetNull)
+
+  summary      String
+  inputSummary String?
+  output       Json?
+  model        String?
+  provider     String?
+  durationMs   Int?
+  error        String?
+
+  createdAt DateTime @default(now())
+
+  @@index([campaignId, createdAt])
+  @@index([leadId, createdAt])
+  @@index([type, createdAt])
+}
