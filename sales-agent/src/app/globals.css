@@ -1,0 +1,91 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg: 250 250 251;
+  --surface: 255 255 255;
+  --surface-muted: 246 247 249;
+  --border: 225 228 234;
+  --fg: 23 25 30;
+  --fg-muted: 104 110 122;
+  --accent: 37 78 196;
+}
+
+:root[data-theme='dark'] {
+  --bg: 15 17 21;
+  --surface: 22 24 30;
+  --surface-muted: 29 32 39;
+  --border: 44 48 58;
+  --fg: 234 236 240;
+  --fg-muted: 148 155 168;
+  --accent: 118 152 255;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) {
+    --bg: 15 17 21;
+    --surface: 22 24 30;
+    --surface-muted: 29 32 39;
+    --border: 44 48 58;
+    --fg: 234 236 240;
+    --fg-muted: 148 155 168;
+    --accent: 118 152 255;
+  }
+}
+
+html,
+body {
+  background-color: rgb(var(--bg));
+  color: rgb(var(--fg));
+}
+
+body {
+  -webkit-font-smoothing: antialiased;
+  font-feature-settings: 'tnum' 0;
+}
+
+::selection {
+  background-color: rgb(var(--accent) / 0.25);
+}
+
+/* Table and form primitives shared across pages. */
+@layer components {
+  .input {
+    @apply w-full rounded-md border border-border bg-surface px-3 py-2 text-sm text-fg outline-none transition
+      placeholder:text-fgMuted focus:border-accent focus:ring-2 focus:ring-accent/20;
+  }
+
+  .label {
+    @apply mb-1.5 block text-xs font-medium uppercase tracking-wide text-fgMuted;
+  }
+
+  .card {
+    @apply rounded-lg border border-border bg-surface;
+  }
+
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-md border px-3 py-2 text-sm font-medium transition
+      disabled:cursor-not-allowed disabled:opacity-50;
+  }
+
+  .btn-primary {
+    @apply btn border-transparent bg-accent text-white hover:bg-accent/90;
+  }
+
+  .btn-secondary {
+    @apply btn border-border bg-surface text-fg hover:bg-surfaceMuted;
+  }
+
+  .btn-ghost {
+    @apply btn border-transparent text-fgMuted hover:bg-surfaceMuted hover:text-fg;
+  }
+
+  .th {
+    @apply whitespace-nowrap px-4 py-2.5 text-left text-xs font-semibold uppercase tracking-wide text-fgMuted;
+  }
+
+  .td {
+    @apply px-4 py-3 text-sm align-top;
+  }
+}
